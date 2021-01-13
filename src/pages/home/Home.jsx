@@ -9,10 +9,38 @@ import articles from "./articles.json";
 import "./styles.scss";
 
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
     articles: articles,
+   
   };
+ 
+
+  componentDidMount=async ()=>{
+    try{
+      const url= "http://localhost:3005"
+      let response= await fetch(url+"/articles")
+      if (response.ok){
+      let articles= await response.json()
+      this.setState({articles:articles})
+      console.log(this.state.articles)
+ 
+
+      }
+      else{
+        
+        console.log("cannot get response:")
+
+      }
+
+    }
+    catch(error){
+      console.log(error)
+    }
+    
+    
+  }
+
   render() {
     return (
       <div>
@@ -33,6 +61,7 @@ export default class Home extends Component {
             <Col className={"flex-column w-100"}>
               {this.state.articles.slice(1, 5).map((article) => (
                 <ArticleListItem
+                  key={article._id}
                   articleImg={"left"}
                   headingFont={"small"}
                   article={article}
@@ -50,6 +79,7 @@ export default class Home extends Component {
             <Col className={"col-lg-8 pr-5 pl-2"}>
               {this.state.articles.slice(6).map((article) => (
                 <ArticleListItem
+                key={article._id}
                   articleImg={"left"}
                   headingFont={"large"}
                   subheading
@@ -68,7 +98,7 @@ export default class Home extends Component {
                   <span className={"ml-2"}>READING LIST </span>
                 </div>
                 {this.state.articles.slice(0, 3).map((article) => (
-                  <ArticleListItem headingFont={"small"} article={article} />
+                  <ArticleListItem key={article._id} headingFont={"small"} article={article} />
                 ))}
               </div>
               <Footer />
@@ -79,3 +109,4 @@ export default class Home extends Component {
     );
   }
 }
+export default Home

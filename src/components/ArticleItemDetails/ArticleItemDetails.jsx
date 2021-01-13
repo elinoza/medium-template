@@ -15,7 +15,7 @@ class ArticleItemDetails extends React.Component {
 
           <span className={"author"}>
             <a href="/">
-              <b>{this.props.article.author} </b> in <b>Better Advice</b>
+              <b>{this.props.article.author.name} </b> in <b>Better Advice</b>
             </a>
           </span>
         </div>

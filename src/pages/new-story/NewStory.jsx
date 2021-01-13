@@ -6,10 +6,12 @@ import { Button } from "react-bootstrap";
 import "./styles.scss";
 import CategoryPicker from "../../components/CategoryPicker";
 
+
 export default class NewStory extends Component {
   state = {
     html: "",
   };
+
   editor = React.createRef();
   onChange = (html) => {
     this.setState({ html })

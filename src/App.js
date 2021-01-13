@@ -24,8 +24,8 @@ function App() {
     <Router>
       <NavBar />
       {
-        routes.map(({ path, component }) =>
-          <Route exact path={path} component={component} />
+        routes.map(({ path, component ,index}) =>
+          <Route key={index} exact path={path} component={component} />
         )
       }
     </Router>
