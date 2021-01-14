@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 import { Container } from "react-bootstrap";
 import "react-quill/dist/quill.bubble.css";
 import { Button } from "react-bootstrap";
-import Parser from 'html-react-parser';
+//import Parser from 'html-react-parser';
 import "./styles.scss";
 import CategoryPicker from "../../components/CategoryPicker";
 
@@ -32,7 +32,7 @@ export default class NewStory extends Component {
   postFetch= async()=>{ 
     const url=process.env.REACT_APP_URL
     try {
-      let response= await fetch(url+ "/articles",
+      let response= await fetch(url,
       { 
       method: "POST",
       body: JSON.stringify(this.state.data),
@@ -41,6 +41,22 @@ export default class NewStory extends Component {
       })
       if (response.ok){
         console.log("article posted successfully")
+        this.setState({
+
+          data:{
+            headLine:'',
+            subHead:'',
+            content:'',
+            category:{
+              name:'', 
+              img:''},
+            author:{ 
+              name:'', 
+              img:''},
+            cover:''
+      
+          }
+        })
        }
       else{
         console.log("an error occurred")
@@ -60,7 +76,7 @@ export default class NewStory extends Component {
     data[content] = parsedHtml
     this.setState({data})
     
-    console.log(parsedHtml)
+    console.log(html)
 
   }
   onChange = (e) => {
@@ -108,7 +124,7 @@ export default class NewStory extends Component {
           formats={NewStory.formats}
           ref={this.editor}
           theme="bubble"
-          // value={this.state.data.content}
+          //value={html}
           onChange={this.ParseChange}
           placeholder="Tell your story..."
         />

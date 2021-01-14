@@ -18,8 +18,8 @@ class Home extends Component {
 
   componentDidMount=async ()=>{
     try{
-      const url= "http://localhost:3005"
-      let response= await fetch(url+"/articles")
+      const url= process.env.REACT_APP_URL
+      let response= await fetch(url)
       if (response.ok){
       let articles= await response.json()
       this.setState({articles:articles})
