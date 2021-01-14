@@ -21,18 +21,14 @@ class Home extends Component {
       const url= process.env.REACT_APP_URL
       let response= await fetch(url)
       if (response.ok){
-      let articles= await response.json()
+      let body= await response.json()
       let articles=body.articles
 
       this.setState({articles:articles})
-      console.log(articles)
- 
-
+      console.log(body)
       }
-      else{
-        
+      else{ 
         console.log("cannot get response:")
-
       }
 
     }

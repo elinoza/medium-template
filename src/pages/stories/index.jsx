@@ -45,9 +45,10 @@ fetchArticles=async ()=>{
     const url=process.env.REACT_APP_URL
     let response = await fetch(url)
     if (response.ok){
-        let articles= await response.json()
-        this.setState({articles:articles.articles})
-        console.log(articles.articles)
+        let body= await response.json()
+        let articles= body.articles
+        this.setState({articles:articles})
+        console.log(articles)
     }
     else{
         let error= await response.json()
