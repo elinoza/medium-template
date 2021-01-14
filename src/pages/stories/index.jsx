@@ -46,8 +46,8 @@ fetchArticles=async ()=>{
     let response = await fetch(url)
     if (response.ok){
         let articles= await response.json()
-        this.setState({articles:articles})
-        console.log(articles)
+        this.setState({articles:articles.articles})
+        console.log(articles.articles)
     }
     else{
         let error= await response.json()

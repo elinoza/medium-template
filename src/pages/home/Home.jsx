@@ -22,8 +22,10 @@ class Home extends Component {
       let response= await fetch(url)
       if (response.ok){
       let articles= await response.json()
+      let articles=body.articles
+
       this.setState({articles:articles})
-      console.log(this.state.articles)
+      console.log(articles)
  
 
       }
